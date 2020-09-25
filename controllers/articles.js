@@ -4,7 +4,7 @@ const NotFoundError = require('../errors/not-found-error');
 const BadRequestError = require('../errors/bad-request-error');
 const ForbiddenError = require('../errors/forbidden-error');
 
-module.exports.getArticle = (req, res, next) => {
+module.exports.getArticles = (req, res, next) => {
   Article.find({})
     .then((cards) => res.send({ data: cards }))
     .catch(next);
