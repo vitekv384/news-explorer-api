@@ -27,7 +27,7 @@ module.exports.createArticle = (req, res, next) => {
 };
 
 module.exports.deleteArticle = (req, res, next) => {
-  Article.findOneAndDelete({ articleId: req.params.id })
+  Article.findOneAndDelete({ _id: req.params.articleId })
     .orFail()
     .then((article) => {
       if (article.owner.toString() !== req.user._id) {
@@ -37,10 +37,10 @@ module.exports.deleteArticle = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'DocumentNotFoundError') {
-        return next(new NotFoundError(`Статья с id ${req.params.id} не найдена`));
+        return next(new NotFoundError(`Статья с id ${req.params.articleId} не найдена`));
       }
       if (err.name === 'CastError') {
-        return next(new BadRequestError(`Ошибка валидации id статьи ${req.params.id}`));
+        return next(new BadRequestError(`Ошибка валидации id статьи ${req.params.articleId}`));
       }
       next(err);
     });
