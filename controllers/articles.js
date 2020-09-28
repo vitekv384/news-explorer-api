@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-error');
 const BadRequestError = require('../errors/bad-request-error');
@@ -42,6 +41,6 @@ module.exports.deleteArticle = (req, res, next) => {
       if (err.name === 'CastError') {
         return next(new BadRequestError(`Ошибка валидации id статьи ${req.params.articleId}`));
       }
-      next(err);
+      return next(err);
     });
 };

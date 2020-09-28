@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -11,7 +10,7 @@ module.exports.getUser = (req, res, next) => {
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'DocumentNotFoundError') {
-        return next(new NotFoundError(`${err.message}`));
+        next(new NotFoundError(`${err.message}`));
       }
     });
 };
@@ -43,7 +42,7 @@ module.exports.createUser = (req, res, next) => {
         e.statusCode = 409;
         return next(e);
       }
-      next(err);
+      return next(err);
     });
 };
 

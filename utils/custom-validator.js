@@ -1,5 +1,5 @@
 const validator = require('validator');
-const BadRequestError = require('./errors/bad-request-error');
+const BadRequestError = require('../errors/bad-request-error');
 
 module.exports = (link) => {
   if (validator.isURL(link)) {
