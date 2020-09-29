@@ -11,7 +11,10 @@ const limiter = require('./utils/limiter');
 
 require('dotenv').config();
 
-const { PORT = 3000 } = process.env;
+const {
+  PORT = 3000,
+  DB_URL = 'mongodb://localhost:27017/news-api',
+} = process.env;
 const app = express();
 
 app.use(limiter);
@@ -19,7 +22,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost:27017/news-api', {
+mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
