@@ -16,6 +16,7 @@ const whitelist = [
   'http://localhost:8080',
   'http://news-app.tk',
   'https://news-app.tk',
+  'https://vitekv384.github.io',
 ];
 const corsOptions = {
   origin: (origin, callback) => {
